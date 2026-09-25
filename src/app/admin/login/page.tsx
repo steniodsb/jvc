@@ -12,7 +12,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/admin/logi
     <div className="flex min-h-screen items-center justify-center bg-paper-2 px-4">
       <div className="w-full max-w-sm">
         <div className="border-t-4 border-brand bg-white p-8 shadow-sm">
-          <Image src="/brand/logo-jcv.png" alt="Jornal Cidades do Vale" width={1527} height={627} className="mx-auto h-16 w-auto" priority />
+          <Image src="/brand/logo-jcv.webp" alt="Jornal Cidades do Vale" width={800} height={328} className="mx-auto h-16 w-auto" priority />
           <h1 className="mt-6 text-center font-display text-lg font-bold">Painel da redação</h1>
           {noAccess && (
             <p className="mt-4 rounded bg-red-50 p-3 text-sm text-red-700">

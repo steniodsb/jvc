@@ -45,7 +45,7 @@ export default async function Header() {
           </details>
 
           <Link href="/" className="justify-self-center" aria-label={`${SITE.name}: página inicial`}>
-            <Image src="/brand/logo-jcv.png" alt={SITE.name} width={1527} height={627} priority className="h-14 w-auto sm:h-20 md:h-24" />
+            <Image src="/brand/logo-jcv.webp" alt={SITE.name} width={800} height={328} priority className="h-14 w-auto sm:h-20 md:h-24" />
           </Link>
 
           <div className="flex items-center justify-end gap-3 text-[13px]">

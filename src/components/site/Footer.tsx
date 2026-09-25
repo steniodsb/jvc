@@ -10,7 +10,7 @@ export default async function Footer() {
     <footer className="mt-16 border-t-4 border-brand bg-paper-2">
       <div className="mx-auto grid max-w-[1200px] gap-10 px-4 py-12 md:grid-cols-[1.3fr_1fr_1fr]">
         <div>
-          <Image src="/brand/logo-jcv.png" alt={SITE.name} width={1527} height={627} className="h-16 w-auto" />
+          <Image src="/brand/logo-jcv.webp" alt={SITE.name} width={800} height={328} className="h-16 w-auto" />
           <p className="mt-4 max-w-sm text-sm italic leading-relaxed text-ink-soft">{SITE.about}</p>
           <div className="mt-5 flex gap-4">
             <a href={SITE.facebook} target="_blank" rel="noopener" aria-label="Facebook" className="text-ink hover:text-brand"><FacebookIcon /></a>

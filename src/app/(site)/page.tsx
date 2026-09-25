@@ -1,7 +1,8 @@
 import Link from "next/link";
 import AdSlot from "@/components/site/AdSlot";
 import Sidebar from "@/components/site/Sidebar";
-import { FeatureCard, LeadStory, ListItem, NoteItem, SectionHeader } from "@/components/site/cards";
+import { FeatureCard, ListItem, NoteItem, SectionHeader } from "@/components/site/cards";
+import { GridCard, OverlayCard, Ticker } from "@/components/site/hero";
 import { getByCategory, getByHighlight, getCategories, getLatest } from "@/lib/queries";
 import type { Post } from "@/lib/types";
 
@@ -30,7 +31,7 @@ export default async function Home() {
   };
 
   const lead = take(manchetes.length ? manchetes : latest, 1)[0];
-  const features = take([...destaques, ...latest], 3);
+  const features = take([...destaques, ...latest], 2);
   const seconds = take([...secundarias, ...latest], 4);
   const sectionCats = categories.filter((c) => c.show_in_nav && c.slug !== "opiniao");
   const sections = (
@@ -45,24 +46,23 @@ export default async function Home() {
 
   return (
     <>
+      <Ticker posts={latest.slice(0, 8)} />
+
       {/* Manchete + destaques */}
-      <section className="grid gap-8 border-b-2 border-ink pb-8 lg:grid-cols-[1fr_340px]">
-        <LeadStory post={lead} />
-        <div className="space-y-6 lg:border-l lg:border-line lg:pl-8">
-          {features.slice(0, 1).map((p) => (
-            <FeatureCard key={p.id} post={p} />
-          ))}
-          {features.slice(1).map((p) => (
-            <FeatureCard key={p.id} post={{ ...p, cover_url: null }} size="sm" />
+      <section className="grid gap-4 lg:h-[540px] lg:grid-cols-[1.75fr_1fr]">
+        <OverlayCard post={lead} priority />
+        <div className="grid gap-4 lg:grid-rows-2">
+          {features.slice(0, 2).map((p) => (
+            <OverlayCard key={p.id} post={p} size="md" />
           ))}
         </div>
       </section>
 
-      {/* Faixa de secundárias */}
+      {/* Fileira de cards */}
       {seconds.length > 0 && (
-        <section className="grid gap-8 border-b border-line py-8 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-line [&>*]:lg:px-5 [&>*:first-child]:lg:pl-0 [&>*:last-child]:lg:pr-0">
+        <section className="grid gap-6 border-b border-line py-8 sm:grid-cols-2 lg:grid-cols-4">
           {seconds.map((p) => (
-            <FeatureCard key={p.id} post={p} size="sm" showSubtitle={false} />
+            <GridCard key={p.id} post={p} />
           ))}
         </section>
       )}

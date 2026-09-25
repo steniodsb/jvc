@@ -31,6 +31,23 @@ export function todayLong() {
   }).format(new Date());
 }
 
+/** "há 2 horas", "há 3 dias"; acima de 7 dias mostra a data */
+export function timeAgo(iso: string | null | undefined) {
+  if (!iso) return "";
+  const diff = (Date.now() - new Date(iso).getTime()) / 1000;
+  if (diff < 60) return "agora";
+  if (diff < 3600) return `há ${Math.floor(diff / 60)} min`;
+  if (diff < 86400) {
+    const h = Math.floor(diff / 3600);
+    return `há ${h} hora${h > 1 ? "s" : ""}`;
+  }
+  if (diff < 7 * 86400) {
+    const d = Math.floor(diff / 86400);
+    return `há ${d} dia${d > 1 ? "s" : ""}`;
+  }
+  return formatDate(iso);
+}
+
 /** Chapéu da matéria: campo próprio > cidade > editoria */
 export function kickerOf(p: Pick<Post, "kicker" | "city" | "category">) {
   return p.kicker || p.city?.name || p.category?.name || "";
